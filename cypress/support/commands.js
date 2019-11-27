@@ -1,3 +1,31 @@
+Cypress.Commands.add('getLazySrc', (checkattr,location) => {
+    cy.get(location).should('have.attr',checkattr)
+    .then((datasrc) =>{
+        return datasrc;
+    })         
+    
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
