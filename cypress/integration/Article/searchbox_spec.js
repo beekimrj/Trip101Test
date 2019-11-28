@@ -13,6 +13,10 @@ describe('Article', () => {
                 cy.get('div.combined-sbox > ul')
                 .children('.active')
                 .contains(`${article.boxToBeSelected}`)
+
+                //Destination text box should not be empty
+                cy.get('#destination').should('not.have.value', '')
+        
             })     
         });
     })
