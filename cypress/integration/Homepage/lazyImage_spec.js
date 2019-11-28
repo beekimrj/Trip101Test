@@ -5,7 +5,7 @@ describe('Homepage', () => {
 
     context('lazyload Image', () => {
         // lazyimg contains location of lazy image to check
-        const lazyimg = 'body > section.main-section > div > section > div.row.collapse > section > section:nth-child(5) > div.custom-page.columns > ul > li:nth-child(12) > article > a > img';
+        const lazyimg = 'section.medium-12.columns > section:nth-child(5) > div.custom-page.columns > ul > li:nth-child(12) > article > a > img';
         let firstsrc, lastsrc;
         it('lazyload Image is not loaded first', () => {
             cy.getLazySrc('data-src',lazyimg).then((abc) => {
