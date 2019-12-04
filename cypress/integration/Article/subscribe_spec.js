@@ -11,7 +11,7 @@ function makeid(length) {
     return result;
  }
 
- describe('Lazy Load in Article', () => {
+ describe('Email', () => {
     before(() => {
         cy.visit('/article/what-to-buy-in-kathmandu')
        
