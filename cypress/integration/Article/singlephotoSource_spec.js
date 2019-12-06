@@ -6,5 +6,6 @@ describe('Article Photo', () => {
         it('Searches for photo source', () => {
            cy.get('span.paragraphs-decription > section:nth-child(1) > div.credits').scrollIntoView({duration: 500})
            .contains("Source")
+           .and('have.descendants','a') // to check if there is anchor tag or not
         });
 })
