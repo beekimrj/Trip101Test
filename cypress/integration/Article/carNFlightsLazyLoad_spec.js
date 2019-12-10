@@ -20,6 +20,14 @@ describe('Article', () => {
         cy.wait(1000)
         cy.get('.SearchWidget__searchWidgetFieldsWrap___6HsSR ')
         .should('exist')
+        cy.get('div.LocationAutosuggest__container___31KAF > input')
+        // .eq(1)       //this method also works but we need to repeat same code and place 2 in eq()
+        // .should('not.have.value', '')
+        .then( ($box) => {
+                //From and To field should be autocomplete
+            expect($box.eq(0)).not.to.have.value('')        // for From
+            expect($box.eq(1)).not.to.have.value('')        // for To
+        })
     });
 })
 
