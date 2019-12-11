@@ -4,7 +4,8 @@ describe('Lazy Load in Article', () => {
 
     });
 
-
+    // NOTE:: It will skip instagram test as it is not loading in my cypress, if you want to test, just remove 'skip' keyword
+    //  i.e. FROM context.skip('Instagram', () => { TO context('Instagram', () => {
     context.skip('Instagram', () => {
         it('checks is instagram does lazy load or not', () => {
             cy.get('span.paragraphs-decription > section:nth-child(2) ').as('insta')
