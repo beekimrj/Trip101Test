@@ -1,4 +1,4 @@
 {
-    "baseUrl": "https://www.trip101.com",
+    "baseUrl": "https://staging.trip101.com",
     "chromeWebSecurity": false 
 }
