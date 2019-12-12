@@ -7,7 +7,7 @@ Cypress.Commands.add('getLazySrc', (checkattr,location) => {
 })
 
 
- Cypress.Commands.add('login', () => {
+ Cypress.Commands.add('websiteUserLogin', () => {
      var cookie;
      cy.getCookie('_trip101_session')
      .then( (cookie) => {
