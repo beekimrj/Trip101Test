@@ -1,5 +1,5 @@
 node_modules/
 cypress/integration/myTests/
 cypress/videos/
-cypress/screenshots
+cypress/screenshots/
 cypress.env.json
