@@ -23,3 +23,15 @@ Cypress.Commands.add('getLazySrc', (checkattr,location) => {
          }
      })
  })
+
+ Cypress.Commands.add('countOccurence', (location, find) => {
+    var count
+    cy.get(`${location}`)
+    .find(`${find}`)     //this will return all blockquotes of first article i.e. all tips list
+    .then((leng) => {
+        // console.log(leng)
+        count = leng.length
+        console.log(count)
+        return count
+    })
+ })
