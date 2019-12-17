@@ -1,3 +1,7 @@
+/// <reference types="Cypress" />
+//NOTE:: Above Triple-slash directives are single-line comments containing a single XML tag. The contents of the comment are used as compiler directives.
+
+// Make sure that the testing article is endorsed by atleast one local expert to pass the first context test
 describe('Article', () => {
     before(() => {
         cy.websiteUserLogin();
@@ -7,6 +11,30 @@ describe('Article', () => {
 
     beforeEach(function () {
         Cypress.Cookies.preserveOnce('is_local_expert', 'website_user', '_trip101_session')
+    })
+
+    context('Local Expert, endorse btn, endorse by, unendorse btn', () => {
+        it('checks for local expert', () => {
+
+            cy.getCookie('is_local_expert')
+                .should('have.property', 'value', 'true')
+        });
+
+
+        it('Endorse button visiblity, show Article endorsed by and unendorse btn', () => {
+            cy.get('#endorse').scrollIntoView()
+                .should('be.visible')
+                .contains('Endorse this article')
+                .click()
+
+            cy.get('.paragraphs-decription > div')
+                .last().scrollIntoView()
+                .contains('This article has been endorsed by')
+            cy.get('#endorse')
+                .should('be.visible')
+                .contains('Unendorse this article')
+                .click()
+        });
     })
 
     context('All about tips', () => {
@@ -25,7 +53,7 @@ describe('Article', () => {
         // location of 1st article
         const firstArticle = "div[data-react-class=LocalExpertTips]:first > div"
         // waitTime is for setting waiting time and it is needed so that cypress can wait when we make/update tip to complete
-        var countTips, waitTime = 1000;
+        var countTips, waitTime = 1500;
         // NOTE:: image location is in cypress/fixtures/images
         let inputBtnPath = `div.reveal-modal.open >  .uploader > input[type=file]#file`
         let fixturePath = 'Images/matka.jpg';
@@ -35,6 +63,8 @@ describe('Article', () => {
         // For editing tip image
         let editFixturePath = 'Images/matka2.jpg';
         let editFileName = 'matka2.jpg';
+        let editMimeType = mimeType;
+        let editInputBtnPath = inputBtnPath;
 
         it('Add tip', () => {
             // cy.get('#add-tip').first()  //can be replaced for below one
@@ -116,7 +146,7 @@ describe('Article', () => {
                     });
                 cy.get(`${firstArticle} > blockquote:nth-child(${countTips}) > .tip-ctrl > i.fa-edit`)
                     .click()
-                cy.uploadImg(inputBtnPath, editFixturePath, editFileName, mimeType)
+                cy.uploadImg(editInputBtnPath, editFixturePath, editFileName, editMimeType)
                 cy.get('.flex-container > .image-container:nth-child(2) > div > input[name=caption]')
                     // can also use cy.get('[name="caption"]') but above method is helpful when we have multiple image, just change value of nth-chlid
                     .click()
