@@ -7,19 +7,23 @@ Cypress.Commands.add('getLazySrc', (checkattr,location) => {
 })
 
 
- Cypress.Commands.add('websiteUserLogin', () => {
+ Cypress.Commands.add('websiteUserLogin', (link = "staging.trip101") => {
      var cookie;
      cy.getCookie('_trip101_session')
      .then( (cookie) => {
          if(!cookie)
          {
-             cy.visit('https://staging.trip101.com/website_users/sign_in')
+             cy.visit(`https://${link}.com/website_users/sign_in`)
              cy.get('#website_user_email')
              .type(Cypress.env('username'))
              cy.get('#website_user_password')
              .type(Cypress.env('password'))
              cy.get('.actions > input')
              .click()
+         }
+         else if(link != "staging.trip101")
+         {
+            cy.visit(`https://${link}.com/`)
          }
      })
  })

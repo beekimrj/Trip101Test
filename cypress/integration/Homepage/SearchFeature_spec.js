@@ -1,12 +1,13 @@
 describe('Homepage Search Feature', () => {
     beforeEach(() => {
         cy.visit('/')
+       
     })
 
     context('when invalid keyword is searched', function () {
         it('when invalid keyword is searched', () => {
             const place = "kaaaaaathmandu"
-            cy.get('#s2id_autogen1').type(`${place}`)
+            cy.get('#s2id_autogen1').type(`${place}`).wait(1000)
             cy.get(".select2-results").should('not.be.visible')
             cy.get('#s2id_autogen1').type('{enter}')
             cy.url().should('contain', `search?q=${place}`)
